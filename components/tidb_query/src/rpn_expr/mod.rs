@@ -321,6 +321,7 @@ fn map_expr_node_to_rpn_func(expr: &Expr) -> Result<RpnFnMeta> {
         ScalarFuncSig::InTime => compare_in_by_compare_fn_meta::<DateTime>(),
         ScalarFuncSig::InDuration => compare_in_by_hash_fn_meta::<Duration>(),
         ScalarFuncSig::InJson => compare_in_by_compare_fn_meta::<Json>(),
+        ScalarFuncSig::IntervalReal => interval_real_fn_meta(),
         ScalarFuncSig::IfReal => if_condition_fn_meta::<Real>(),
         ScalarFuncSig::IfJson => if_condition_fn_meta::<Json>(),
         ScalarFuncSig::IfInt => if_condition_fn_meta::<Int>(),

@@ -207,6 +207,29 @@ pub fn coalesce<T: Evaluable>(args: &[&Option<T>]) -> Result<Option<T>> {
     Ok(None)
 }
 
+#[rpn_fn(varg)]
+#[inline]
+pub fn interval_real(args: &[&Option<Real>]) -> Result<Option<Int>>{
+    let target = match args[0] {
+        None => return Ok(Some(-1)),
+        Some(v) => *v,
+    };
+
+    let mut left = 1;
+    let mut right = args.len();
+    while left < right {
+        let mit = left + (right - left) / 2;
+        let m = args[mid].unwrap_or(target);
+
+        if target >= m{
+            left = mid + 1
+        }else {
+            right = mid
+        }
+    }
+    Ok(Some((left -1 ) as Int))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
